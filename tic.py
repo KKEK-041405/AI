@@ -36,7 +36,7 @@ def possWin(player):
             product *= board[(j*3) + i +1]
         if product == traget:
             for j in range(3):
-                if board[(i*3) + j +1] == 2: return (i*3) + j +1
+                if board[(j*3) + i +1] == 2: return (j*3) + i +1
     #diagonal check
     if board[1] * board[5] * board[9] == traget:
         if board[1] == 2:return 1
@@ -62,7 +62,7 @@ def Computer(i,mark):
             go(3,mark)
     if i == 4:
         if(not possWin(15/mark) == 0): go(possWin(15/mark),mark)
-        else: go(make2,mark)
+        else: go(make2(),mark)
     if i == 5:
         if(not possWin(mark) == 0): go(possWin(mark),mark)#winning move
         elif(not possWin(15/mark) == 0): go(possWin(15/mark),mark)#block opponet
