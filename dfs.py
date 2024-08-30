@@ -1,25 +1,34 @@
-class Graph:
-    def __init__(self):
-        self.graph = defaultdict(list)
-    def addEdge(self, u, v):
-        self.graph[u].append(v)
-    def DFSUtil(self, v, visited):
-        visited.add(v)
-        print(v, end=' ')
-        for neighbour in self.graph[v]:
-            if neighbour not in visited:
-                self.DFSUtil(neighbour, visited)
-
-    def DFS(self, v):
+def dfs(graph, start, visited=None):
+    if visited is None:
         visited = set()
-        self.DFSUtil(v, visited)
+   
+    visited.add(start)
+    print(start, end=" ")  # Process the current vertex (e.g., print it)
+   
+    # Recursively visit all the adjacent vertices
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
 
-g = Graph()
-g.addEdge(0, 1)
-g.addEdge(0, 2)
-g.addEdge(1, 2)
-g.addEdge(2, 0)
-g.addEdge(2, 3)
-g.addEdge(3, 3)
-print("Following is DFS from (starting from vertex 2)")
-g.DFS(2)
+def create_graph():
+    graph = {}
+   
+    num_nodes = int(input("Enter the number of nodes: "))
+   
+    # Adding nodes and their connections
+    for _ in range(num_nodes):
+        node = input("Enter the node name: ")
+        neighbors = input(f"Enter the neighbors of {node} (space-separated): ").split()
+        graph[node] = neighbors
+   
+    return graph
+
+def main():
+    graph = create_graph()
+    start_node = input("Enter the starting node: ")
+   
+    print("\nDFS Traversal Order:")
+    dfs(graph, start_node)
+
+if __name__ == "__main__":
+    main()
