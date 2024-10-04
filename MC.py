@@ -1,8 +1,3 @@
-import math
-
-#______________________________________________________________________________
-# Missionaries and Cannibals Problem
-
 class State():
 	def __init__(self, cannibalLeft, missionaryLeft, boat, cannibalRight, missionaryRight):
 		self.cannibalLeft = cannibalLeft
